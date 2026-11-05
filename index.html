@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1020">
+  <title>DevSpace — Developer Toolkit</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="DevSpace home">
+        <span class="brand-mark">⌘</span><span>Dev<span class="brand-accent">Space</span></span>
+      </a>
+      <div class="side-label">WORKSPACE</div>
+      <nav class="nav">
+        <button class="nav-item active" data-view="overview"><span>◫</span> Overview</button>
+        <button class="nav-item" data-view="editor"><span>⌨</span> Code editor</button>
+        <button class="nav-item" data-view="colors"><span>◉</span> Color picker</button>
+        <button class="nav-item" data-view="json"><span>{ }</span> JSON formatter</button>
+        <button class="nav-item" data-view="url"><span>↗</span> URL encoder</button>
+        <button class="nav-item" data-view="notes"><span>▤</span> Notes</button>
+        <button class="nav-item" data-view="pomodoro"><span>◷</span> Pomodoro</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="side-tip"><span class="tip-icon">✦</span><b>Quick tip</b><p>Your notes and snippets stay in this browser using local storage.</p></div>
+        <div class="profile"><div class="avatar">D</div><div><b>Developer</b><small>Personal workspace</small></div></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="icon-btn mobile-menu" id="menuBtn" aria-label="Open menu">☰</button>
+        <div class="breadcrumb">Workspace <span>/</span> <b id="crumb">Overview</b></div>
+        <div class="top-actions">
+          <span class="status"><i></i> All systems ready</span>
+          <button class="icon-btn" id="themeBtn" title="Toggle theme" aria-label="Toggle theme">☼</button>
+        </div>
+      </header>
+
+      <section class="view active" id="view-overview">
+        <div class="welcome">
+          <div><div class="eyebrow">YOUR CREATIVE WORKSPACE</div><h1>Build something <span>great.</span></h1><p>Everything you need for your next coding session, all in one place.</p></div>
+          <div class="welcome-art"><div class="orb orb-one"></div><div class="orb orb-two"></div><div class="code-art">&lt;/&gt;</div></div>
+        </div>
+        <div class="section-heading"><div><h2>Developer tools</h2><p>Pick a tool and get straight to work.</p></div><span class="muted">7 tools available</span></div>
+        <div class="tool-grid">
+          <button class="tool-card" data-open="editor"><span class="tool-icon purple">⌨</span><b>Code editor</b><small>Write and preview HTML, CSS & JS.</small><span class="card-arrow">↗</span></button>
+          <button class="tool-card" data-open="colors"><span class="tool-icon pink">◉</span><b>Color picker</b><small>Choose colors and copy HEX or RGB.</small><span class="card-arrow">↗</span></button>
+          <button class="tool-card" data-open="json"><span class="tool-icon blue">{ }</span><b>JSON formatter</b><small>Format and validate JSON data.</small><span class="card-arrow">↗</span></button>
+          <button class="tool-card" data-open="url"><span class="tool-icon green">↗</span><b>URL encoder</b><small>Encode or decode URL text.</small><span class="card-arrow">↗</span></button>
+          <button class="tool-card" data-open="notes"><span class="tool-icon orange">▤</span><b>Quick notes</b><small>Keep useful ideas in one place.</small><span class="card-arrow">↗</span></button>
+          <button class="tool-card" data-open="pomodoro"><span class="tool-icon cyan">◷</span><b>Pomodoro timer</b><small>Focus in short productive sessions.</small><span class="card-arrow">↗</span></button>
+        </div>
+        <div class="bottom-grid">
+          <div class="panel"><div class="panel-head"><div><h3>Quick launch</h3><p>Jump back into your workflow.</p></div><span class="live-dot">● READY</span></div><div class="quick-row"><span class="quick-symbol">⌘</span><div><b>Start coding</b><small>Open the live HTML playground</small></div><button class="text-btn" data-open="editor">Open tool →</button></div><div class="quick-row"><span class="quick-symbol">✎</span><div><b>Capture an idea</b><small>Write a note before you forget</small></div><button class="text-btn" data-open="notes">Open tool →</button></div></div>
+          <div class="panel stats-panel"><h3>Workspace snapshot</h3><p>Your activity at a glance.</p><div class="stats"><div><strong id="noteCount">0</strong><small>Saved notes</small></div><div><strong>7</strong><small>Built-in tools</small></div><div><strong>∞</strong><small>Ideas to build</small></div></div></div>
+        </div>
+      </section>
+
+      <section class="view" id="view-editor">
+        <div class="page-title"><div><div class="eyebrow">PLAYGROUND</div><h1>Code editor</h1><p>Experiment with HTML, CSS and JavaScript. Preview your work instantly.</p></div><button class="primary-btn" id="runCode">▶ Run preview</button></div>
+        <div class="editor-layout">
+          <div class="panel editor-panel"><div class="tabs"><button class="editor-tab selected" data-tab="html">HTML</button><button class="editor-tab" data-tab="css">CSS</button><button class="editor-tab" data-tab="js">JavaScript</button><button class="text-btn" id="resetCode">Reset</button></div>
+            <textarea id="htmlCode" class="code-input" spellcheck="false"><h1>Hello, DevSpace!</h1>
+<p>Start creating something awesome.</p>
+<button onclick="document.querySelector('p').textContent='You clicked the button!'">Click me</button></textarea>
+            <textarea id="cssCode" class="code-input hidden" spellcheck="false">body {
+  font-family: Arial, sans-serif;
+  padding: 30px;
+  color: #18213a;
+}
+h1 { color: #7057f5; }
+button {
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 8px;
+  background: #7057f5;
+  color: white;
+  cursor: pointer;
+}</textarea>
+            <textarea id="jsCode" class="code-input hidden" spellcheck="false">// Write your JavaScript here
+console.log("Hello from DevSpace!");</textarea>
+            <div class="editor-foot"><span>● Local playground</span><span>Changes run only when you click Run preview</span></div>
+          </div>
+          <div class="panel preview-panel"><div class="panel-head"><div><h3>Live preview</h3><p>Output appears here</p></div><span class="preview-label">PREVIEW</span></div><iframe id="preview" title="Code preview" sandbox="allow-scripts"></iframe></div>
+        </div>
+      </section>
+
+      <section class="view" id="view-colors">
+        <div class="page-title"><div><div class="eyebrow">DESIGN TOOL</div><h1>Color picker</h1><p>Find a color, preview it and copy its values.</p></div></div>
+        <div class="two-col"><div class="panel color-panel"><h3>Choose your color</h3><div class="color-stage" id="colorStage"><input type="color" id="colorInput" value="#7057f5" aria-label="Choose color"></div><label class="field-label" for="hexValue">HEX value</label><div class="copy-field"><input id="hexValue" value="#7057F5"><button class="copy-btn" data-copy="hexValue">Copy</button></div><label class="field-label" for="rgbValue">RGB value</label><div class="copy-field"><input id="rgbValue" readonly><button class="copy-btn" data-copy="rgbValue">Copy</button></div></div>
+          <div class="panel"><h3>Color preview</h3><div class="large-swatch" id="largeSwatch"></div><div class="swatch-caption"><b id="colorName">Electric violet</b><span id="colorHexLabel">#7057F5</span></div><p class="helper">Tip: click the color square to open your device's color selector.</p></div></div>
+        <div class="panel"><div class="panel-head"><div><h3>Quick palette</h3><p>Tap a swatch to use it.</p></div></div><div class="palette" id="palette"></div></div>
+      </section>
+
+      <section class="view" id="view-json">
+        <div class="page-title"><div><div class="eyebrow">DATA TOOL</div><h1>JSON formatter</h1><p>Format, minify and validate JSON data.</p></div></div>
+        <div class="panel"><div class="panel-head"><div><h3>JSON workspace</h3><p>Paste your JSON below.</p></div><div class="button-row"><button class="secondary-btn" id="formatJson">Format</button><button class="secondary-btn" id="minifyJson">Minify</button><button class="secondary-btn" id="clearJson">Clear</button></div></div><textarea id="jsonInput" class="large-textarea" spellcheck="false">{"name":"DevSpace","tools":["editor","colors","json"],"openSource":true}</textarea><div class="result-row"><span id="jsonStatus" class="result neutral">Waiting for validation</span><button class="copy-btn" id="copyJson">Copy result</button></div></div>
+      </section>
+
+      <section class="view" id="view-url">
+        <div class="page-title"><div><div class="eyebrow">WEB TOOL</div><h1>URL encoder</h1><p>Safely encode text for URLs or decode encoded strings.</p></div></div>
+        <div class="panel"><label class="field-label" for="urlInput">Input text</label><textarea id="urlInput" class="large-textarea" placeholder="Type or paste text here..."></textarea><div class="button-row url-buttons"><button class="primary-btn" id="encodeUrl">Encode ↓</button><button class="secondary-btn" id="decodeUrl">Decode ↑</button><button class="secondary-btn" id="clearUrl">Clear</button></div><label class="field-label" for="urlOutput">Result</label><textarea id="urlOutput" class="large-textarea output-area" readonly placeholder="Your result will appear here..."></textarea><div class="result-row"><span id="urlStatus" class="result neutral">Ready</span><button class="copy-btn" id="copyUrl">Copy result</button></div></div>
+      </section>
+
+      <section class="view" id="view-notes">
+        <div class="page-title"><div><div class="eyebrow">PERSONAL SPACE</div><h1>Quick notes</h1><p>Save ideas and snippets locally in your browser.</p></div><span class="saved-label">● AUTO-SAVED</span></div>
+        <div class="notes-layout"><div class="panel note-compose"><h3>New note</h3><input id="noteTitle" class="text-input" placeholder="Note title"><textarea id="noteBody" class="large-textarea" placeholder="Write your idea..."></textarea><button class="primary-btn full-btn" id="saveNote">＋ Save note</button></div><div class="panel"><div class="panel-head"><div><h3>Your notes</h3><p id="notesSubtitle">No notes yet</p></div><button class="text-btn" id="clearNotes">Clear all</button></div><div id="notesList" class="notes-list"><div class="empty-state">✎<b>Your space is empty</b><span>Save your first note to see it here.</span></div></div></div></div>
+      </section>
+
+      <section class="view" id="view-pomodoro">
+        <div class="page-title"><div><div class="eyebrow">FOCUS MODE</div><h1>Pomodoro timer</h1><p>Work in focused blocks, then take a short break.</p></div></div>
+        <div class="panel timer-panel"><div class="timer-modes"><button class="mode-btn active" data-minutes="25" data-mode="Focus">Focus</button><button class="mode-btn" data-minutes="5" data-mode="Short break">Short break</button><button class="mode-btn" data-minutes="15" data-mode="Long break">Long break</button></div><div class="timer-ring" id="timerRing"><div class="timer-inner"><span id="timerMode">Focus time</span><strong id="timerDisplay">25:00</strong><small>Stay focused. You've got this.</small></div></div><div class="timer-controls"><button class="primary-btn" id="timerStart">▶ Start</button><button class="secondary-btn" id="timerReset">↺ Reset</button></div><div class="session-count">Sessions completed: <b id="sessions">0</b></div></div>
+      </section>
+
+      <footer>Made for creators who love to build. <span>DevSpace © 2026</span></footer>
+    </main>
+  </div>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="script.js"></script>
+</body>
+</html>
